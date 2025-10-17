@@ -4,10 +4,18 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Portfolio />
     </div>
   );
 }
+function Portfolio() {
+  return (
+    <div>
+      <img src="/about me.jpg" alt="My Portfolioo" />
+    </div>
+  );
+}
+
 
 export default App;
