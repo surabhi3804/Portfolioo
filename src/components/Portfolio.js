@@ -19,11 +19,11 @@ const Portfolio = () => {
   const phrases = ['Web Developer', 'Problem Solver', 'Tech Enthusiast'];
 
   const skillsData = [
-    { icon: '💻', title: 'Programming Languages', description: 'C, C++,Python, MySQL', color: '#6366f1' },
+    { icon: '💻', title: 'Programming Languages', description: 'C, C++,Python, MySQL,PostgreSQL', color: '#6366f1' },
     { icon: '⚡', title: 'Web Development', description: 'HTML, CSS,Javascript', color: '#8b5cf6' },
     { icon: '🛠️', title: 'Tools', description: 'Git, GitHub, Google Colab,VS Code', color: '#06b6d4' },
     { icon: '🤝', title: 'Soft Skills', description: 'Time Management, Teamwork', color: '#10b981' },
-    { icon: '⚡', title: 'Relevant Coursework', description: 'Database Management, Operating System.', color: '#8b5cf6' }
+    { icon: '⚡', title: 'Relevant Coursework', description: 'Database Management, Operating System, OOPS', color: '#8b5cf6' }
   ];
 
   const projectsData = [
@@ -214,7 +214,7 @@ const Portfolio = () => {
           </p>
           <div className="animate-on-scroll">
             <a 
-              href="https://drive.google.com/file/d/1SHJi8NObqLJ-PytQVK1UHtWywYBS64U7/view?usp=sharing"
+              href="https://drive.google.com/file/d/1WCeZB4yBnUGdz-SYRGPe331JpO0yc7Y-/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-violet-500/50 transition-all transform hover:scale-105"
