@@ -103,7 +103,7 @@ const Portfolio = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      const sections = ['home', 'about', 'resume', 'skills', 'experience', 'achievements', 'projects', 'contact'];
+      const sections = ['home', 'about', 'resume', 'skills', 'experience', 'projects', 'achievements', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -164,7 +164,7 @@ const Portfolio = () => {
               Surabhi Tyagi
             </div>
             <div className="hidden md:flex gap-8">
-              {['home', 'about', 'resume', 'skills', 'experience', 'achievements', 'projects', 'contact'].map(section => (
+              {['home', 'about', 'resume', 'skills', 'experience', 'projects', 'achievements', 'contact'].map(section => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -323,35 +323,6 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* ── ACHIEVEMENTS ── */}
-      <section id="achievements" className="py-24 px-6 bg-zinc-950">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-on-scroll">Achievements</h2>
-          <div className="achievements-grid">
-            {achievementsData.map((item, index) => (
-              <div
-                key={index}
-                className="animate-on-scroll achievement-card"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="achievement-icon-wrap" style={{ background: item.color }}>
-                  {item.icon}
-                </div>
-                <div className="achievement-body">
-                  <div className="achievement-top">
-                    <h3 className="achievement-title">{item.title}</h3>
-                    <span className="achievement-badge" style={{ color: item.color, borderColor: item.color }}>
-                      {item.badge}
-                    </span>
-                  </div>
-                  <p className="achievement-desc">{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── PROJECTS ── */}
       <section id="projects" className="py-24 px-6 bg-zinc-950">
         <div className="max-w-6xl mx-auto">
@@ -381,6 +352,35 @@ const Portfolio = () => {
                   </div>
                 </div>
               </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ACHIEVEMENTS ── */}
+      <section id="achievements" className="py-24 px-6 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16 animate-on-scroll">Achievements</h2>
+          <div className="achievements-grid">
+            {achievementsData.map((item, index) => (
+              <div
+                key={index}
+                className="animate-on-scroll achievement-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="achievement-icon-wrap" style={{ background: item.color }}>
+                  {item.icon}
+                </div>
+                <div className="achievement-body">
+                  <div className="achievement-top">
+                    <h3 className="achievement-title">{item.title}</h3>
+                    <span className="achievement-badge" style={{ color: item.color, borderColor: item.color }}>
+                      {item.badge}
+                    </span>
+                  </div>
+                  <p className="achievement-desc">{item.description}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

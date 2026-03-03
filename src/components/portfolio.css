@@ -655,7 +655,7 @@ section#experience { background: #000000; }
    ACHIEVEMENTS SECTION
    =============================================== */
 
-section#achievements { background: #0a0a0a; }
+section#achievements { background: #000000; }
 
 .achievements-grid {
   display: grid;
