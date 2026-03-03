@@ -19,27 +19,48 @@ const Portfolio = () => {
   const phrases = ['Web Developer', 'Problem Solver', 'Tech Enthusiast'];
 
   const skillsData = [
-    { icon: '💻', title: 'Programming Languages', description: 'C, C++,Python, MySQL,PostgreSQL', color: '#6366f1' },
-    { icon: '⚡', title: 'Web Development', description: 'HTML, CSS,Javascript', color: '#8b5cf6' },
-    { icon: '🛠️', title: 'Tools', description: 'Git, GitHub, Google Colab,VS Code', color: '#06b6d4' },
+    { icon: '💻', title: 'Programming Languages', description: 'C, C++, Python, MySQL, PostgreSQL', color: '#6366f1' },
+    { icon: '⚡', title: 'Web Development', description: 'HTML, CSS, Javascript, React js', color: '#8b5cf6' },
+    { icon: '🛠️', title: 'Tools', description: 'Git, GitHub, Google Colab, VS Code', color: '#06b6d4' },
     { icon: '🤝', title: 'Soft Skills', description: 'Time Management, Teamwork', color: '#10b981' },
-    { icon: '⚡', title: 'Relevant Coursework', description: 'Database Management, Operating System, OOPS', color: '#8b5cf6' }
+    { icon: '📚', title: 'Relevant Coursework', description: 'Data Structures and Algorithms, Database Management, Operating System, OOPS', color: '#8b5cf6' }
   ];
 
   const projectsData = [
     {
+      title: 'Review Management System',
+      description: 'Built an end-to-end Review Management System to collect, process, and analyze customer reviews from multiple sources',
+      tags: ['Render', 'Vercel'],
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      link: 'https://review-ochre.vercel.app/',
+    },
+    {
       title: 'Price Comparison Website',
       description: 'Developed a website using Drupal that allows users to compare product prices across e-commerce websites',
-      tags: ['Drupal'],
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      link: 'https://drive.google.com/drive/folders/1LrJM6uEYpjJkh5YWFf3fTJc0bs-xvaT5?usp=drive_link'
+      tags: ['Drupal', 'Digital Ocean'],
+      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    },
+  ];
+
+  const experienceData = [
+    {
+      role: 'Research Intern',
+      organization: 'CUNY-India Air Pollution Study',
+      duration: 'Dec 2024 – Jan 2025',
+      description: [
+        'Contributed to a collaborative research initiative between CUNY and India focused on air pollution analysis.',
+        'Assisted in data collection, processing, and analysis of air quality datasets.',
+        'Supported the research team with technical tasks and documentation.',
+      ],
+      icon: '🔬',
+      color: '#06b6d4',
     },
   ];
 
   useEffect(() => {
     const typeWriter = () => {
       const currentPhrase = phrases[phraseIndex];
-      
+
       if (isDeleting) {
         if (charIndex > 0) {
           setTypewriterText(currentPhrase.substring(0, charIndex - 1));
@@ -54,7 +75,7 @@ const Portfolio = () => {
     };
 
     let speed = isDeleting ? 50 : 100;
-    
+
     if (!isDeleting && charIndex === phrases[phraseIndex].length) {
       speed = 2000;
       setTimeout(() => setIsDeleting(true), speed);
@@ -72,7 +93,7 @@ const Portfolio = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      const sections = ['home', 'about', 'resume', 'skills', 'projects', 'contact'];
+      const sections = ['home', 'about', 'resume', 'skills', 'experience', 'projects', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -125,6 +146,7 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* ── NAV ── */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90 backdrop-blur-lg border-b border-white/10 shadow-lg' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -132,7 +154,7 @@ const Portfolio = () => {
               Surabhi Tyagi
             </div>
             <div className="hidden md:flex gap-8">
-              {['home', 'about', 'resume', 'skills', 'projects', 'contact'].map(section => (
+              {['home', 'about', 'resume', 'skills', 'experience', 'projects', 'contact'].map(section => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -146,6 +168,7 @@ const Portfolio = () => {
         </div>
       </nav>
 
+      {/* ── HOME ── */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-500/30 rounded-full blur-3xl animate-pulse"></div>
@@ -174,6 +197,7 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* ── ABOUT ── */}
       <section id="about" className="py-24 px-6 bg-zinc-950">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16 animate-on-scroll">About Me</h2>
@@ -181,17 +205,15 @@ const Portfolio = () => {
             <div className="relative">
               <div className="about-image-container">
                 {!imageError ? (
-                  <img 
+                  <img
                     src={`${process.env.PUBLIC_URL}/aboutme.jpg`}
-                    alt="Surabhi Tyagi" 
+                    alt="Surabhi Tyagi"
                     className="about-image"
                     onError={() => setImageError(true)}
                   />
                 ) : (
                   <div className="image-placeholder">Image not found</div>
-                )} : (
-                  <div className="image-placeholder">Image not found</div>
-                )
+                )}
               </div>
             </div>
             <div>
@@ -206,6 +228,7 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* ── RESUME ── */}
       <section id="resume" className="py-24 px-6 bg-black">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-8 animate-on-scroll">My Resume</h2>
@@ -213,8 +236,8 @@ const Portfolio = () => {
             Download my resume to learn more about my experience, education, and qualifications.
           </p>
           <div className="animate-on-scroll">
-            <a 
-              href="https://drive.google.com/file/d/1HjFDAzuQQc0X3sFp-53DRjVsNFZokrUG/view?usp=sharing"
+            <a
+              href="https://drive.google.com/file/d/132aNhuTz3dQX0OExm_Nti42q2Hwz79Ac/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-violet-500/50 transition-all transform hover:scale-105"
@@ -228,12 +251,17 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* ── SKILLS ── */}
       <section id="skills" className="py-24 px-6 bg-zinc-950">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-on-scroll">Skills & Expertise</h2>
+          <h2 className="text-4xl font-bold text-center mb-16 animate-on-scroll">Skills &amp; Expertise</h2>
           <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
             {skillsData.map((skill, index) => (
-              <div key={index} className="animate-on-scroll p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-violet-500/50 transition-all hover:shadow-lg hover:shadow-violet-500/20" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div
+                key={index}
+                className="animate-on-scroll p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-violet-500/50 transition-all hover:shadow-lg hover:shadow-violet-500/20"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div className="w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-4" style={{ background: skill.color }}>
                   {skill.icon}
                 </div>
@@ -245,14 +273,55 @@ const Portfolio = () => {
         </div>
       </section>
 
-      <section id="projects" className="py-24 px-6 bg-black">
+      {/* ── EXPERIENCE ── */}
+      <section id="experience" className="py-24 px-6 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16 animate-on-scroll">Experience</h2>
+          <div className="experience-timeline">
+            {experienceData.map((exp, index) => (
+              <div
+                key={index}
+                className="animate-on-scroll experience-card"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                {/* Left icon column */}
+                <div className="experience-icon-col">
+                  <div className="experience-icon" style={{ background: exp.color }}>
+                    {exp.icon}
+                  </div>
+                  <div className="experience-line"></div>
+                </div>
+
+                {/* Right content column */}
+                <div className="experience-content">
+                  <div className="experience-header">
+                    <div>
+                      <h3 className="experience-role">{exp.role}</h3>
+                      <p className="experience-org">{exp.organization}</p>
+                    </div>
+                    <span className="experience-duration">{exp.duration}</span>
+                  </div>
+                  <ul className="experience-bullets">
+                    {exp.description.map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PROJECTS ── */}
+      <section id="projects" className="py-24 px-6 bg-zinc-950">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16 animate-on-scroll">Featured Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projectsData.map((project, index) => (
-              <a 
+              <a
                 key={index}
-                href={project.link}
+                href={project.link || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="animate-on-scroll group rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-violet-500/50 transition-all hover:shadow-xl hover:shadow-violet-500/20 cursor-pointer block"
@@ -278,7 +347,8 @@ const Portfolio = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-24 px-6 bg-zinc-950">
+      {/* ── CONTACT ── */}
+      <section id="contact" className="py-24 px-6 bg-black">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16 animate-on-scroll">Get In Touch</h2>
           <div className="grid md:grid-cols-2 gap-12">
@@ -358,7 +428,10 @@ const Portfolio = () => {
                     className="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-800 focus:border-violet-500 focus:outline-none transition-colors resize-none"
                   />
                 </div>
-                <button onClick={handleSubmit} className="w-full px-8 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-violet-500/50 transition-all">
+                <button
+                  onClick={handleSubmit}
+                  className="w-full px-8 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-violet-500/50 transition-all"
+                >
                   Send Message
                 </button>
               </div>
