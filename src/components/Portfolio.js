@@ -19,14 +19,21 @@ const Portfolio = () => {
   const phrases = ['Web Developer', 'Problem Solver', 'Tech Enthusiast'];
 
   const skillsData = [
-    { icon: '💻', title: 'Programming Languages', description: 'C, C++, Python, MySQL, PostgreSQL', color: '#6366f1' },
-    { icon: '⚡', title: 'Web Development', description: 'HTML, CSS, Javascript, React js', color: '#8b5cf6' },
-    { icon: '🛠️', title: 'Tools', description: 'Git, GitHub, Google Colab, VS Code', color: '#06b6d4' },
+    { icon: '💻', title: 'Programming Languages', description: 'C, C++, Python, Javascript, HTML, CSS', color: '#6366f1' },
+    { icon: '⚡', title: 'Technologies', description: 'React js, Node js, Express js', color: '#8b5cf6' },
+    { icon: '📚', title: 'Database', description: 'MySQL, PostgresSQL, MongoDB', color: '#8b5cf6' },
+    { icon: '🛠️', title: 'Tools', description: 'Git, GitHub, VS Code', color: '#06b6d4' },
     { icon: '🤝', title: 'Soft Skills', description: 'Time Management, Teamwork', color: '#10b981' },
-    { icon: '📚', title: 'Relevant Coursework', description: 'Data Structures and Algorithms, Database Management, Operating System, OOPS', color: '#8b5cf6' }
   ];
 
   const projectsData = [
+    {
+      title: 'FinTrack-Smart Expense Tracker',
+      description: 'Built FinTrack, an AI-powered personal finance web application for expense tracking, budgeting, and goal-based savings management',
+      tags: ['Render', 'Vercel'],
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      link: 'https://fin-track-silk-ten.vercel.app//',
+    },
     {
       title: 'Review Management System',
       description: 'Built an end-to-end Review Management System to collect, process, and analyze customer reviews from multiple sources',
@@ -35,20 +42,42 @@ const Portfolio = () => {
       link: 'https://review-ochre.vercel.app/',
     },
     {
+      title: 'SkillFolio - Resume and Portfolio Generator',
+      description: 'Built a full-stack resume and portfolio generation platform supporting dynamic templates and downloadable PDF outputs.',
+      tags: ['React.js', 'Node js', 'Express js', 'MongoDB', 'REST APIs', 'Python'],
+      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+      link: null,
+    },
+    {
       title: 'Price Comparison Website',
       description: 'Developed a website using Drupal that allows users to compare product prices across e-commerce websites',
       tags: ['Drupal', 'Digital Ocean'],
       gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+      link: null,
     },
   ];
 
   const achievementsData = [
     {
+      icon: '🎓',
+      title: 'CUNY Certificate of Completion',
+      description: 'Awarded a Certificate of Completion from CUNY for outstanding contribution to the air pollution research project.',
+      badge: 'Certified',
+      color: '#6366f1',
+    },
+    {
       icon: '🏆',
       title: 'HackX 4.0 Hackathon',
-      description: 'Participated in HackX 4.0, a competitive hackathon that brought together developers and innovators to build creative tech solutions under time constraints.',
+      description: 'Participated in HackX 4.0, contributing to the development of "ReviewHub" — a platform to manage and analyze customer reviews.',
       badge: 'Participant',
       color: '#f59e0b',
+    },
+    {
+      icon: '🚀',
+      title: 'HackNova Hackathon',
+      description: 'Participated in HackNova Hackathon, enhancing skills in teamwork, problem-solving, and rapid prototyping under competitive conditions.',
+      badge: 'Participant',
+      color: '#10b981',
     },
   ];
 
@@ -247,7 +276,7 @@ const Portfolio = () => {
           </p>
           <div className="animate-on-scroll">
             <a
-              href="https://drive.google.com/file/d/132aNhuTz3dQX0OExm_Nti42q2Hwz79Ac/view?usp=sharing"
+              href="https://drive.google.com/file/d/1XO-GsTdmTK6Sw22PYRaAIbH4dc8cm7o7/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-violet-500/50 transition-all transform hover:scale-105"
@@ -294,15 +323,12 @@ const Portfolio = () => {
                 className="animate-on-scroll experience-card"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                {/* Left icon column */}
                 <div className="experience-icon-col">
                   <div className="experience-icon" style={{ background: exp.color }}>
                     {exp.icon}
                   </div>
                   <div className="experience-line"></div>
                 </div>
-
-                {/* Right content column */}
                 <div className="experience-content">
                   <div className="experience-header">
                     <div>
@@ -331,16 +357,19 @@ const Portfolio = () => {
             {projectsData.map((project, index) => (
               <a
                 key={index}
-                href={project.link || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="animate-on-scroll group rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-violet-500/50 transition-all hover:shadow-xl hover:shadow-violet-500/20 cursor-pointer block"
+                href={project.link || undefined}
+                target={project.link ? '_blank' : undefined}
+                rel={project.link ? 'noopener noreferrer' : undefined}
+                onClick={!project.link ? (e) => e.preventDefault() : undefined}
+                className={`animate-on-scroll group rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-violet-500/50 transition-all hover:shadow-xl hover:shadow-violet-500/20 block ${project.link ? 'cursor-pointer' : 'cursor-default'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="h-48 relative overflow-hidden" style={{ background: project.gradient }}>
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <ExternalLink className="text-white" size={32} />
-                  </div>
+                  {project.link && (
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <ExternalLink className="text-white" size={32} />
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-3">{project.title}</h3>
