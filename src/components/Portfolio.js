@@ -2,6 +2,87 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink } from 'lucide-react';
 import './portfolio.css';
 
+// ── Moved outside component so it's stable and doesn't trigger ESLint warnings ──
+const phrases = ['Web Developer', 'Problem Solver', 'Tech Enthusiast'];
+
+const skillsData = [
+  { icon: '💻', title: 'Programming Languages', description: 'C, C++, Python, Javascript, HTML, CSS', color: '#6366f1' },
+  { icon: '⚡', title: 'Technologies', description: 'React js, Node js, Express js', color: '#8b5cf6' },
+  { icon: '📚', title: 'Database', description: 'MySQL, PostgresSQL, MongoDB', color: '#8b5cf6' },
+  { icon: '🛠️', title: 'Tools', description: 'Git, GitHub, VS Code', color: '#06b6d4' },
+  { icon: '🤝', title: 'Soft Skills', description: 'Time Management, Teamwork', color: '#10b981' },
+];
+
+const projectsData = [
+  {
+    title: 'FinTrack-Smart Expense Tracker',
+    description: 'Built FinTrack, an AI-powered personal finance web application for expense tracking, budgeting, and goal-based savings management',
+    tags: ['Render', 'Vercel'],
+    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    link: 'https://fin-track-silk-ten.vercel.app//',
+  },
+  {
+    title: 'Review Management System',
+    description: 'Built an end-to-end Review Management System to collect, process, and analyze customer reviews from multiple sources',
+    tags: ['Render', 'Vercel'],
+    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    link: 'https://review-ochre.vercel.app/',
+  },
+  {
+    title: 'SkillFolio - Resume and Portfolio Generator',
+    description: 'Built a full-stack resume and portfolio generation platform supporting dynamic templates and downloadable PDF outputs.',
+    tags: ['React.js', 'Node js', 'Express js', 'MongoDB', 'REST APIs', 'Python'],
+    gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    link: null,
+  },
+  {
+    title: 'Price Comparison Website',
+    description: 'Developed a website using Drupal that allows users to compare product prices across e-commerce websites',
+    tags: ['Drupal', 'Digital Ocean'],
+    gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    link: null,
+  },
+];
+
+const achievementsData = [
+  {
+    icon: '🎓',
+    title: 'CUNY Certificate of Completion',
+    description: 'Awarded a Certificate of Completion from CUNY for outstanding contribution to the air pollution research project.',
+    badge: 'Certified',
+    color: '#6366f1',
+  },
+  {
+    icon: '🏆',
+    title: 'HackX 4.0 Hackathon',
+    description: 'Participated in HackX 4.0, contributing to the development of "ReviewHub" — a platform to manage and analyze customer reviews.',
+    badge: 'Participant',
+    color: '#f59e0b',
+  },
+  {
+    icon: '🚀',
+    title: 'HackNova Hackathon',
+    description: 'Participated in HackNova Hackathon, enhancing skills in teamwork, problem-solving, and rapid prototyping under competitive conditions.',
+    badge: 'Participant',
+    color: '#10b981',
+  },
+];
+
+const experienceData = [
+  {
+    role: 'Research Intern',
+    organization: 'CUNY-India Air Pollution Study',
+    duration: 'Dec 2024 – Jan 2025',
+    description: [
+      'Contributed to a collaborative research initiative between CUNY and India focused on air pollution analysis.',
+      'Assisted in data collection, processing, and analysis of air quality datasets.',
+      'Supported the research team with technical tasks and documentation.',
+    ],
+    icon: '🔬',
+    color: '#06b6d4',
+  },
+];
+
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,86 +96,6 @@ const Portfolio = () => {
     email: '',
     message: ''
   });
-
-  const phrases = ['Web Developer', 'Problem Solver', 'Tech Enthusiast'];
-
-  const skillsData = [
-    { icon: '💻', title: 'Programming Languages', description: 'C, C++, Python, Javascript, HTML, CSS', color: '#6366f1' },
-    { icon: '⚡', title: 'Technologies', description: 'React js, Node js, Express js', color: '#8b5cf6' },
-    { icon: '📚', title: 'Database', description: 'MySQL, PostgresSQL, MongoDB', color: '#8b5cf6' },
-    { icon: '🛠️', title: 'Tools', description: 'Git, GitHub, VS Code', color: '#06b6d4' },
-    { icon: '🤝', title: 'Soft Skills', description: 'Time Management, Teamwork', color: '#10b981' },
-  ];
-
-  const projectsData = [
-    {
-      title: 'FinTrack-Smart Expense Tracker',
-      description: 'Built FinTrack, an AI-powered personal finance web application for expense tracking, budgeting, and goal-based savings management',
-      tags: ['Render', 'Vercel'],
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      link: 'https://fin-track-silk-ten.vercel.app//',
-    },
-    {
-      title: 'Review Management System',
-      description: 'Built an end-to-end Review Management System to collect, process, and analyze customer reviews from multiple sources',
-      tags: ['Render', 'Vercel'],
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      link: 'https://review-ochre.vercel.app/',
-    },
-    {
-      title: 'SkillFolio - Resume and Portfolio Generator',
-      description: 'Built a full-stack resume and portfolio generation platform supporting dynamic templates and downloadable PDF outputs.',
-      tags: ['React.js', 'Node js', 'Express js', 'MongoDB', 'REST APIs', 'Python'],
-      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      link: null,
-    },
-    {
-      title: 'Price Comparison Website',
-      description: 'Developed a website using Drupal that allows users to compare product prices across e-commerce websites',
-      tags: ['Drupal', 'Digital Ocean'],
-      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      link: null,
-    },
-  ];
-
-  const achievementsData = [
-    {
-      icon: '🎓',
-      title: 'CUNY Certificate of Completion',
-      description: 'Awarded a Certificate of Completion from CUNY for outstanding contribution to the air pollution research project.',
-      badge: 'Certified',
-      color: '#6366f1',
-    },
-    {
-      icon: '🏆',
-      title: 'HackX 4.0 Hackathon',
-      description: 'Participated in HackX 4.0, contributing to the development of "ReviewHub" — a platform to manage and analyze customer reviews.',
-      badge: 'Participant',
-      color: '#f59e0b',
-    },
-    {
-      icon: '🚀',
-      title: 'HackNova Hackathon',
-      description: 'Participated in HackNova Hackathon, enhancing skills in teamwork, problem-solving, and rapid prototyping under competitive conditions.',
-      badge: 'Participant',
-      color: '#10b981',
-    },
-  ];
-
-  const experienceData = [
-    {
-      role: 'Research Intern',
-      organization: 'CUNY-India Air Pollution Study',
-      duration: 'Dec 2024 – Jan 2025',
-      description: [
-        'Contributed to a collaborative research initiative between CUNY and India focused on air pollution analysis.',
-        'Assisted in data collection, processing, and analysis of air quality datasets.',
-        'Supported the research team with technical tasks and documentation.',
-      ],
-      icon: '🔬',
-      color: '#06b6d4',
-    },
-  ];
 
   useEffect(() => {
     const typeWriter = () => {
