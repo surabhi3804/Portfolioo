@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink } from 'lucide-react';
 import './portfolio.css';
 
-// ── Moved outside component so it's stable and doesn't trigger ESLint warnings ──
 const phrases = ['Web Developer', 'Problem Solver', 'Tech Enthusiast'];
 
 const skillsData = [
@@ -128,6 +127,7 @@ const Portfolio = () => {
 
     const timeout = setTimeout(typeWriter, speed);
     return () => clearTimeout(timeout);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [charIndex, isDeleting, phraseIndex]);
 
   useEffect(() => {
